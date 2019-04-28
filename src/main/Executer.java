@@ -132,11 +132,11 @@ public class Executer {
 		
 	}
 	
-	public void skipVx() {
+	public void skipVx(short x) {
 		
 	}
 	
-	public void skipNotPressedVx() {
+	public void skipNotPressedVx(short x) {
 		
 	}
 	

@@ -1,5 +1,7 @@
 package main;
 
+import java.io.DataInputStream;
+
 public class Memory {
 	
 	//INSTANCE VARIABLES
@@ -30,6 +32,11 @@ public class Memory {
 		for (int i = 0; i < MEMORY_SIZE; i ++) {
 			System.out.println("Memory " + i + ": " + memory[i]);
 		}
+	}
+	
+	public void loadFile() {
+		DataInputStream inputStream = null;
+		
 	}
 	
 }
