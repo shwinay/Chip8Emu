@@ -1,6 +1,8 @@
 package main;
 
 import java.io.DataInputStream;
+import java.io.File;
+import java.io.FileInputStream;
 
 public class Memory {
 	
@@ -17,9 +19,11 @@ public class Memory {
 	public static short delayRegister = 0;
 	public static short soundRegister = 0;
 	public static int[] stack = new int[STACK_SIZE];
-	public static byte[] memory = new byte[MEMORY_SIZE];
+	public static short[] memory = new short[MEMORY_SIZE];
 	public static int pc = 0x000;
 	public static int stackPointer = 0x000;
+	
+	public static String filePath = "C:\\Users\\Ashwin\\Downloads\\pong2.c8";
 	
 	//METHODS
 	public static void printRegisters() {
@@ -34,8 +38,23 @@ public class Memory {
 		}
 	}
 	
-	public void loadFile() {
+	public static void loadFile() {
 		DataInputStream inputStream = null;
+		
+		try {
+			inputStream = new DataInputStream(new FileInputStream(new File(filePath)));
+			int index = 0;
+			
+			while (inputStream.available() > 0) {
+				int inputByte = inputStream.readByte() & 0xFF;
+				memory[index] = (short) inputByte;
+				System.out.println(inputStream.readByte() & 0xFF);
+				index ++;
+			}
+			
+		} catch(Exception e) {
+			e.printStackTrace();
+		}
 		
 	}
 	
