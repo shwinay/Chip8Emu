@@ -3,6 +3,7 @@ package main;
 import java.io.DataInputStream;
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.IOException;
 
 public class Memory {
 	
@@ -19,11 +20,14 @@ public class Memory {
 	public static short delayRegister = 0;
 	public static short soundRegister = 0;
 	public static int[] stack = new int[STACK_SIZE];
-	public static short[] memory = new short[MEMORY_SIZE];
+	public static byte[] memory = new byte[MEMORY_SIZE];
 	public static int pc = 0x000;
 	public static int stackPointer = 0x000;
 	
-	public static String filePath = "C:\\Users\\Ashwin\\Downloads\\pong2.c8";
+	// This is for Unix systems
+	public static String unixFontFilePath = "./src/main/font.hex";
+	
+	
 	
 	//METHODS
 	public static void printRegisters() {
@@ -34,28 +38,36 @@ public class Memory {
 	
 	public static void printMemory() {
 		for (int i = 0; i < MEMORY_SIZE; i ++) {
-			System.out.println("Memory " + i + ": " + memory[i]);
+			System.out.println("Memory " + i + ": " + String.format("0x%02X", memory[i]));
 		}
 	}
 	
-	public static void loadFile() {
-		DataInputStream inputStream = null;
-		
-		try {
-			inputStream = new DataInputStream(new FileInputStream(new File(filePath)));
+	private static void loadFonts() {
+		try(DataInputStream inputStream = new DataInputStream(new FileInputStream(new File(unixFontFilePath)))) {
 			int index = 0;
-			
 			while (inputStream.available() > 0) {
-				int inputByte = inputStream.readByte() & 0xFF;
-				memory[index] = (short) inputByte;
-				System.out.println(inputStream.readByte() & 0xFF);
-				index ++;
+				byte inputByte = inputStream.readByte();
+				memory[index] = inputByte;
+				index++;
 			}
-			
-		} catch(Exception e) {
+		} catch (IOException e) {
+			System.err.println("Error reading ROM file");
 			e.printStackTrace();
-		}
-		
+		};
 	}
 	
+	public static void loadFile(String romFile){
+		loadFonts();
+		try(DataInputStream inputStream = new DataInputStream(new FileInputStream(new File(romFile)))) {
+			int index = 512;
+			while (inputStream.available() > 0) {
+				byte inputByte = inputStream.readByte();
+				memory[index] = inputByte;
+				index++;
+			}
+		} catch (IOException e) {
+			System.err.println("Error reading ROM file");
+			e.printStackTrace();
+		};
+	}
 }
