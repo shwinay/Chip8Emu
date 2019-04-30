@@ -22,6 +22,7 @@ public class Chip {
 	public boolean run() {
 		int isRunning = decoder.decode(getInstruction());
 		while (isRunning!=0) {
+			Memory.pc+=2;
 			isRunning = decoder.decode(getInstruction());
 		}
 		return true;
@@ -29,10 +30,10 @@ public class Chip {
 	}
 	
 	private short getInstruction() {
-
-		System.out.println(String.format("0x%08X",(short) (((Memory.memory[Memory.pc]<<8)) | (Memory.memory[Memory.pc+1])&0xFF)));
+		short ins = (short) (((Memory.memory[Memory.pc]<<8)) | (Memory.memory[Memory.pc+1])&0xFF);
+		System.out.println(String.format("0x%08X",ins));
 		
-		return (short) (((Memory.memory[Memory.pc]<<8)) | (Memory.memory[Memory.pc+1])&0xFF);
+		return ins;
 		
 	}
 

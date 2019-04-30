@@ -17,7 +17,7 @@ public class Memory {
 	
 	public static byte[] registers = new byte[NUM_REGISTERS];
 	public static short iRegister = 0;
-	public static short delayRegister = 0;
+	public static byte delayRegister = 0;
 	public static short soundRegister = 0;
 	public static int[] stack = new int[STACK_SIZE];
 	public static byte[] memory = new byte[MEMORY_SIZE];

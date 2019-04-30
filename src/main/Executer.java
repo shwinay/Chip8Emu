@@ -14,7 +14,6 @@ public class Executer {
 	
 	//METHODS
 	public void cls() {
-		
 	}
 	
 	public void ret() {
@@ -32,83 +31,83 @@ public class Executer {
 		Memory.pc = nnn;
 	}
 	
-	public void seVxByte(short x, short kk) {
+	public void seVxByte(byte x, byte kk) {
 		if (Memory.registers[x] == kk) {
 			Memory.pc += 2;
 		}
 	}
 	
-	public void sneVxByte(short x, short kk) {
+	public void sneVxByte(byte x, byte kk) {
 		if (Memory.registers[x] != kk) {
 			Memory.pc += 2;
 		}
 	}
 	
-	public void seVxVy(short x, short y) {
+	public void seVxVy(byte x, byte y) {
 		if (Memory.registers[x] == Memory.registers[y]) {
 			Memory.pc += 2;
 		}
 	}
 	
-	public void ldVxByte(short x, short kk) {
+	public void ldVxByte(byte x, byte kk) {
 		Memory.registers[x] = kk;
 	}
 	
-	public void addVxByte(short x, short kk) {
+	public void addVxByte(byte x, byte kk) {
 		Memory.registers[x] += kk;
 	}
 	
-	public void ldVxVy(short x, short y) {
+	public void ldVxVy(byte x, byte y) {
 		Memory.registers[x] = Memory.registers[y];
 	}
 	
-	public void orVxVy(short x, short y) {
-		Memory.registers[x] = (short) (Memory.registers[x] | Memory.registers[y]);
+	public void orVxVy(byte x, byte y) {
+		Memory.registers[x] = (byte) (Memory.registers[x] | Memory.registers[y]);
 	}
 	
-	public void andVxVy(short x, short y) {
-		Memory.registers[x] = (short) (Memory.registers[x] & Memory.registers[y]);
+	public void andVxVy(byte x, byte y) {
+		Memory.registers[x] = (byte) (Memory.registers[x] & Memory.registers[y]);
 	}
 	
-	public void xorVxVy(short x, short y) {
-		Memory.registers[x] = (short) (Memory.registers[x] ^ Memory.registers[y]);
+	public void xorVxVy(byte x, byte y) {
+		Memory.registers[x] = (byte) (Memory.registers[x] ^ Memory.registers[y]);
 	}
 	
-	public void addVxVy(short x, short y) {
-		short result = (short) (Memory.registers[x] + Memory.registers[y]);
+	public void addVxVy(byte x, byte y) {
+		byte result = (byte) (Memory.registers[x] + Memory.registers[y]);
 		if (result > 255) {
 			Memory.registers[15] = 1;
-			result = (short) Decoder.extract(result, 7, 0);
+			result = (byte) Decoder.extract(result, 7, 0);
 		}
 		else {
 			Memory.registers[15] = 0;
 		}
-		Memory.registers[x] = result;
+		Memory.registers[x] = (byte) result;
 
 	}
 	
-	public void subVxVy(short x, short y) {
-		Memory.registers[15] = (short) (Memory.registers[x] > Memory.registers[y] ? 1 : 0);
+	public void subVxVy(byte x, byte y) {
+		Memory.registers[15] = (byte) (Memory.registers[x] > Memory.registers[y] ? 1 : 0);
 		Memory.registers[x] -= Memory.registers[y];
 	}
 	
-	public void shrVxVy(short x, short y) { //what to do with y?
-		short vx = Memory.registers[x];
-		Memory.registers[15] = (short) Decoder.extract(vx, 0, 0);
-		Memory.registers[x] = (short) (vx >> 1);
+	public void shrVxVy(byte x, byte y) { //what to do with y?
+		byte vx = Memory.registers[x];
+		Memory.registers[15] = (byte) Decoder.extract(vx, 0, 0);
+		Memory.registers[x] = (byte) (vx >> 1);
 	}
 	
-	public void subNVxVy(short x, short y) {
-		Memory.registers[15] = (short) (Memory.registers[y] > Memory.registers[x] ? 1 : 0);
-		Memory.registers[x] = (short) (Memory.registers[y] - Memory.registers[x]);
+	public void subNVxVy(byte x, byte y) {
+		Memory.registers[15] = (byte) (Memory.registers[y] > Memory.registers[x] ? 1 : 0);
+		Memory.registers[x] = (byte) (Memory.registers[y] - Memory.registers[x]);
 	}
 	
-	public void shlVxVy(short x) {
-		Memory.registers[15] = (short) Decoder.extract(Memory.registers[x], 7, 7);
+	public void shlVxVy(byte x) {
+		Memory.registers[15] = (byte) Decoder.extract(Memory.registers[x], 7, 7);
 		Memory.registers[x] <<= 1;
 	}
 	
-	public void sneVxVy(short x, short y) {
+	public void sneVxVy(byte x, byte y) {
 		if (Memory.registers[x] != Memory.registers[y]) {
 			Memory.pc += 2;
 		}
@@ -122,25 +121,25 @@ public class Executer {
 		Memory.pc = nnn + Memory.registers[0];
 	}
 	
-	public void rndVxByte(short x, short kk) {
+	public void rndVxByte(byte x, byte kk) {
 		Random rand = new Random();
-		short randomNumber = (short) rand.nextInt(256);
-		Memory.registers[x] = (short) (randomNumber & kk);
+		byte randomNumber = (byte) rand.nextInt(256);
+		Memory.registers[x] = (byte) (randomNumber & kk);
 	}
 	
-	public void drwVxVyNibble(short x, short y, short n) {
+	public void drwVxVyNibble(byte x, byte y, byte n) {
 		
 	}
 	
-	public void skipVx(short x) {
+	public void skipVx(byte x) {
 		
 	}
 	
-	public void skipNotPressedVx(short x) {
+	public void skipNotPressedVx(byte x) {
 		
 	}
 	
-	public void ldVxDt(short x) {
+	public void ldVxDt(byte x) {
 		Memory.registers[x] = Memory.delayRegister;
 	}
 	
@@ -148,23 +147,23 @@ public class Executer {
 		
 	}
 	
-	public void ldDtVx(short x) {
+	public void ldDtVx(byte x) {
 		Memory.delayRegister = Memory.registers[x];
 	}
 	
-	public void ldStVx(short x) {
+	public void ldStVx(byte x) {
 		Memory.soundRegister = Memory.registers[x];
 	}
 	
-	public void addIVx(short x) {
+	public void addIVx(byte x) {
 		Memory.iRegister += Memory.registers[x];
 	}
 	
-	public void LdFVx(short x) {
+	public void LdFVx(byte x) {
 
 	}
 	
-	public void LdBVx(short x) {
+	public void LdBVx(byte x) {
 		byte hundredsDigit = (byte) ((Memory.registers[x] / 100) % 10);
 		byte tensDigit = (byte) ((Memory.registers[x] / 10) % 10);
 		byte onesDigit = (byte) (Memory.registers[x] % 10);
@@ -173,11 +172,11 @@ public class Executer {
 		Memory.memory[Memory.iRegister + 2] = onesDigit;		
 	}
 	
-	public void LdIVx(short x) {
+	public void LdIVx(byte x) {
 		
 	}
 	
-	public void LdVxI(short x) {
+	public void LdVxI(byte x) {
 		
 	}
 	
