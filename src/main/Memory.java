@@ -9,7 +9,7 @@ public class Memory {
 	
 	//INSTANCE VARIABLES
 	public static final int NUM_REGISTERS = 8;
-	public static final int MEMORY_SIZE = 4096;
+	public static final int MEMORY_SIZE = 4096; // In bytes
 	public static final int STACK_SIZE = 16;
 	public static final int SCREEN_WIDTH = 64;
 	public static final int SCREEN_HEIGHT = 32;
@@ -26,7 +26,6 @@ public class Memory {
 	
 	// This is for Unix systems
 	public static String unixFontFilePath = "./src/main/font.hex";
-	
 	
 	
 	//METHODS

@@ -1,19 +1,21 @@
 package main;
 
-public class Decoder {
+public class Decoder { 
 	
-	private Executer executer;
-	private int opcode;
+	final private Executer executer;
 	
-	public Decoder() {
-		executer = new Executer(opcode);
+	public Decoder(Graphics myGraphics) {
+		executer = new Executer(myGraphics);
 	}
 	
-	public int decode(int opcode) { //return 1 for valid, 0 for invalid
+	public int decode(short opcode) { //return 1 for valid, 0 for invalid
 		int highestNibble = extract(opcode, 15, 12);;
 		int secondHighestNibble = extract(opcode, 11, 8);
 		int secondLowestNibble = extract(opcode, 7, 4);
 		int lowestNibble = extract(opcode, 3, 0);
+		
+		// Set opcode
+		executer.setOp(opcode);
 		
 		if (opcode == 0b0000000011100000) { //00E0 - CLS
 			executer.cls();

@@ -6,9 +6,15 @@ public class Executer {
 	
 	//INSTANCE VARIABLES
 	private int opcode;
+	private Graphics myGraphics;
 	
 	//CONSTRUCTOR
-	public Executer(int opcode) {
+	public Executer(Graphics myGraphics) {
+		this.myGraphics = myGraphics;
+	}
+	
+	//SETS OPCODE
+	public void setOp(short opcode) {
 		this.opcode = opcode;
 	}
 	
