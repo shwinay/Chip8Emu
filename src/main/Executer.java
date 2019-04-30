@@ -5,11 +5,9 @@ import java.util.Random;
 public class Executer {
 	
 	//INSTANCE VARIABLES
-	private Graphics myGraphics;
 	
 	//CONSTRUCTOR
-	public Executer(Graphics myGraphics) {
-		this.myGraphics = myGraphics;
+	public Executer() {
 	}
 	
 	//METHODS
@@ -87,12 +85,12 @@ public class Executer {
 	}
 	
 	public void subVxVy(byte x, byte y) {
-		Memory.registers[15] = (byte) (Memory.registers[x] > Memory.registers[y] ? 1 : 0);
-		Memory.registers[x] -= Memory.registers[y];
+		Memory.registers[15] = (byte) ((Memory.registers[x]&0xFF) > (Memory.registers[x]&0xFF) ? 1 : 0); //set flag
+		Memory.registers[x] = (byte) ((Memory.registers[x]&0xFF) - (Memory.registers[y]&0xFF));
 	}
 	
 	public void shrVxVy(byte x, byte y) { //what to do with y?
-		byte vx = Memory.registers[x];
+		short vx = (short)(((short)Memory.registers[x]) & 0x00FF);
 		Memory.registers[15] = (byte) Decoder.extract(vx, 0, 0);
 		Memory.registers[x] = (byte) (vx >> 1);
 	}
