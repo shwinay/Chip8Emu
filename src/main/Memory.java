@@ -15,12 +15,12 @@ public class Memory {
 	public static final int SCREEN_HEIGHT = 32;
 	public static final int SCREEN_SCALE = 10;
 	
-	public static byte[] registers = new byte[NUM_REGISTERS];
+	public static short[] registers = new short[NUM_REGISTERS];
 	public static short iRegister = 0;
-	public static byte delayRegister = 0;
+	public static short delayRegister = 0;
 	public static short soundRegister = 0;
 	public static int[] stack = new int[STACK_SIZE];
-	public static byte[] memory = new byte[MEMORY_SIZE];
+	public static short[] memory = new short[MEMORY_SIZE];
 	public static int pc = 0x000;
 	public static int stackPointer = 0x000;
 	
@@ -50,7 +50,7 @@ public class Memory {
 				index++;
 			}
 		} catch (IOException e) {
-			System.err.println("Error reading ROM file");
+			System.err.println("Error reading ROM file ");
 			e.printStackTrace();
 		};
 	}
@@ -61,7 +61,7 @@ public class Memory {
 			int index = 512;
 			while (inputStream.available() > 0) {
 				byte inputByte = inputStream.readByte();
-				memory[index] = inputByte;
+				memory[index] = (short) (inputByte & 0xFF);
 				index++;
 			}
 		} catch (IOException e) {

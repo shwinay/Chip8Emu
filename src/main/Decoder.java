@@ -4,7 +4,7 @@ public class Decoder {
 	
 	final private Executer executer;
 	
-	public Decoder(Graphics myGraphics) {
+	public Decoder() {
 		executer = new Executer();
 	}
 	
@@ -16,50 +16,49 @@ public class Decoder {
 		
 		
 		if (opcode == 0b0000000011100000) { //00E0 - CLS
-			System.out.println("cls");
+			//System.out.println("cls");
 			executer.cls();
 			return 1;
 		}
 		else if (opcode == 0b0000000011101110) { //00EE - RET
-			System.out.println("ret");
+			//System.out.println("ret");
 			executer.ret();
 			return 1;
 		}
 		else if (highestNibble == 0b0001) { //1nnn - JPP addr
-			System.out.println("jpp");
 			short nnn = (short) extract(opcode, 11, 0);
 			executer.jumpAddr(nnn);
 			return 1;
 		}
 		else if (highestNibble == 0b0010) { //2nnn - CALL addr
-			System.out.println("call");
+			//System.out.println("call");
 			short nnn = (short) extract(opcode, 11, 0);
 			executer.callAddr(nnn);
 			return 1;
 		}
 		else if (highestNibble == 0b0011) { //3xkk - SE Vx, byte
-			System.out.println("se");
+			//System.out.println("se");
 			byte x = (byte) extract(opcode, 11, 8);
 			byte kk = (byte) extract(opcode, 7, 0);
 			executer.seVxByte(x, kk);
 			return 1;
 		}
 		else if (highestNibble == 0b0100) { //4xkk - SNE Vx, byte
-			System.out.println("sne");
+			//System.out.println("sne");
 			byte x = (byte) extract(opcode, 11, 8);
 			byte kk = (byte) extract(opcode, 7, 0);
 			executer.sneVxByte(x, kk);
 			return 1;
 		}
 		else if (highestNibble == 0b0101 && lowestNibble == 0) { //5xy0 - SE Vx, Vy
-			System.out.println("sevxvy");
+			//System.out.println("sevxvy");
 			byte x = (byte) extract(opcode, 11, 8);
 			byte y = (byte) extract(opcode, 7, 4);
 			executer.seVxVy(x, y);
 			return 1;
 		}
 		else if (highestNibble == 0b0110) { //6xkk - LD Vx, byte
-			System.out.println("ldvx");
+			//System.out.println("ldvx");
 			byte x = (byte) extract(opcode, 11, 8);
 			byte kk = (byte) extract(opcode, 7, 0);
 			executer.ldVxByte(x, kk);

@@ -26,9 +26,10 @@ class ExecuterTest {
 	
 	@Test
 	void testAddByte() {
-		Memory.registers[10] = 10;
-		executer.addVxByte((byte)10, (byte)100);
-		assert(Memory.registers[10] == 110);
+		Memory.registers[10] = 255;
+		executer.addVxByte((short)10, (short)1);
+		System.out.println(Memory.registers[10]);
+		//assert(Memory.registers[10] == 110);
 	}
 	
 	@Test

@@ -5,16 +5,12 @@ public class Main {
 	public static String windowsFilePath = "c8games//PONG2";
 	
 	
-	public static void main(String[] args) {
-		
-//		Chip myChip = new Chip(unixFilePath, new graph1());
-//		myChip.initialize(unixFilePath);
-//		//myChip.run();
-//		Memory.printMemory();
-//		Memory.printRegisters();
-		byte a = -1;
-		byte b = (byte) Decoder.extract(a, 7, 0);
-		System.out.println(b);
+	public static void main(String[] args) {		
+		Chip chip = new Chip(unixFilePath);
+		chip.initialize();
+		chip.run();
+//		DrawTest dt = new DrawTest();
+//		dt.draw(dt.IMAGE);
 	}
 	
 }
