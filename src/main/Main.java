@@ -8,7 +8,8 @@ public class Main {
 		Chip myChip = new Chip(unixFilePath, new graph1());
 		myChip.initialize(unixFilePath);
 		myChip.run();
-		Memory.printMemory();
+		//Memory.printMemory();
+		Memory.printRegisters();
 	}
 	
 }

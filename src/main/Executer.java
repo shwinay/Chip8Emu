@@ -5,17 +5,11 @@ import java.util.Random;
 public class Executer {
 	
 	//INSTANCE VARIABLES
-	private int opcode;
 	private Graphics myGraphics;
 	
 	//CONSTRUCTOR
 	public Executer(Graphics myGraphics) {
 		this.myGraphics = myGraphics;
-	}
-	
-	//SETS OPCODE
-	public void setOp(short opcode) {
-		this.opcode = opcode;
 	}
 	
 	//METHODS
