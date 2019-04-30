@@ -18,7 +18,7 @@ public class Executer {
 	
 	public void ret() {
 		Memory.pc = Memory.stack[Memory.stackPointer];
-		Memory.stackPointer --;
+		Memory.stackPointer--;
 	}
 	
 	public void jumpAddr(short nnn) {
@@ -26,7 +26,7 @@ public class Executer {
 	}
 	
 	public void callAddr(short nnn) {
-		Memory.stackPointer ++;
+		Memory.stackPointer++;
 		Memory.stack[Memory.stackPointer] = Memory.pc;
 		Memory.pc = nnn;
 	}
