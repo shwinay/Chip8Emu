@@ -39,25 +39,25 @@ public class GameScreen implements Screen {
 	public void render(float delta) {
 		//decode and execute instructions
 		int shouldRun = decoder.decode(getInstruction());
-		if (shouldRun == 0) {
-			System.exit(0);
-		}
+//		if (shouldRun == 0) {
+//			System.exit(0);
+//		}
 		//update graphics
 		showDisplay();
 	}
 	
 	public void showDisplay() {
-		Gdx.gl.glClearColor(0, 0, 0, 1);
+		Gdx.gl.glClearColor(0, 0, 0, 1); //clear to black
 		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 		shapeRenderer.setProjectionMatrix(camera.combined);
 		shapeRenderer.begin(ShapeType.Filled);
 		for (int y = 0; y < Memory.pixels.length; y ++) {
 			for (int x = 0; x < Memory.pixels[y].length; x ++) {
 				if (Memory.pixels[y][x] != 0) { //should color white
-					shapeRenderer.setColor(new Color(1f, 1f, 1f, 0f));
+					shapeRenderer.setColor(new Color(1f, 1f, 1f, 0f)); //set color to white
 				}
 				else {
-					shapeRenderer.setColor(new Color(0f, 0f, 0f, 0f));
+					shapeRenderer.setColor(new Color(0f, 0f, 0f, 0f)); //set color to black
 				}
 				shapeRenderer.rect(x, y, 1f, 1f);
 			}

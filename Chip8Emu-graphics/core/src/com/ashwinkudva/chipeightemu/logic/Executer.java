@@ -1,5 +1,6 @@
 package com.ashwinkudva.chipeightemu.logic;
 
+import java.util.Arrays;
 import java.util.Random;
 
 public class Executer {
@@ -12,6 +13,8 @@ public class Executer {
 	
 	//METHODS
 	public void cls() {
+		Memory.pixels = new int[GameScreen.DISPLAY_HEIGHT][GameScreen.DISPLAY_WIDTH];
+		Memory.pc += 2;
 	}
 	
 	public void ret() {
@@ -146,14 +149,36 @@ public class Executer {
 	}
 	
 	public void drwVxVyNibble(short x, short y, short n) {
-		//DRAW SHIT
 		short coordX = (short) (Memory.registers[x] & 0xFF);
 		short coordY = (short) (Memory.registers[y] & 0xFF);
 		short[] sprite = new short[n];
+		boolean hasCollided = false;
+//		System.out.println(coordX);
+//		System.out.println(coordY);
+//		System.out.println(n);
+//		System.out.println(Memory.iRegister);
 		
-//		for (int i = 0; i < n; i ++) {
-//			sprite[i] = Memory.memory[Memory.iRegister + i];
-//		}
+		
+		for (int i = 0; i < n; i ++) {
+			System.out.println("At loc " + (Memory.iRegister + i) + ": " + Memory.memory[Memory.iRegister + i]);
+			sprite[i] = Memory.memory[Memory.iRegister + i];
+		}
+		
+		System.out.println(Arrays.toString(sprite));
+		
+		for (int x_ = 0; x_ < 8; x_ ++) {
+			for (int y_ = 0; y_ < n; y_ ++) {
+				int beforePixel = Memory.pixels[(coordY + y_) % GameScreen.DISPLAY_HEIGHT][(coordX + x_) % GameScreen.DISPLAY_WIDTH];
+				int extractPixel = Decoder.extract(sprite[y_], 8 - x_ - 1, 8 - x_ - 1);
+				if ((beforePixel & extractPixel) == 1) {
+					hasCollided = true;
+				}
+				//System.out.println("Before pixel at (" + (x_) + ", " + (y_) + "): " + Memory.pixels[coordY + y_][coordX + x_]);
+				Memory.pixels[(coordY + y_) % GameScreen.DISPLAY_HEIGHT][(coordX + x_) % GameScreen.DISPLAY_WIDTH] = beforePixel ^ extractPixel;
+				//System.out.println("After pixel at (" + (x_) + ", " + (y_) + "): " + Memory.pixels[coordY + y_][coordX + x_]);
+			}
+		}
+		Memory.registers[15] = (short) (hasCollided ? 1 : 0);
 		
 		Memory.pc += 2;
 	}
@@ -191,6 +216,9 @@ public class Executer {
 	}
 	
 	public void LdFVx(short x) {
+		
+		short fontByte = Memory.registers[x];
+		Memory.iRegister = fontByte * 5;
 		Memory.pc += 2;
 	}
 	
@@ -205,10 +233,16 @@ public class Executer {
 	}
 	
 	public void LdIVx(short x) {
+		System.exit(0);
 		Memory.pc += 2;
 	}
 	
 	public void LdVxI(short x) {
+		
+		for (int i = 0; i <= x; i ++) {
+			Memory.registers[x] = (short) (Memory.memory[Memory.iRegister + i] & 0xFF);
+		}
+		
 		Memory.pc += 2;
 	}
 	
