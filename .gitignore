@@ -1,4 +1,16 @@
-Chip8Emu-original/c8games/
-Chip8Emu-original/bin/main/
+c8games/
 .DS_Store
+bin/
 
+Chip8Emu-graphics/android/AndroidManifest.xml
+Chip8Emu-graphics/android/build.gradle
+Chip8Emu-graphics/android/project.properties
+Chip8Emu-graphics/build.gradle
+Chip8Emu-graphics/gradle.properties
+Chip8Emu-graphics/gradle/wrapper/gradle-wrapper.jar
+Chip8Emu-graphics/gradle/wrapper/gradle-wrapper.properties
+Chip8Emu-graphics/gradlew
+Chip8Emu-graphics/gradlew.bat
+Chip8Emu-graphics/html/build.gradle
+Chip8Emu-graphics/settings.gradle
+Chip8Emu-graphics/android/proguard-rules.pro

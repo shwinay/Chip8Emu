@@ -112,3 +112,17 @@ gradle-app.setting
 ## OS Specific
 .DS_Store
 Thumbs.db
+
+## Zac Added
+/android/AndroidManifest.xml
+/android/build.gradle
+/android/project.properties
+/build.gradle
+/gradle.properties
+/gradle/wrapper/gradle-wrapper.jar
+/gradle/wrapper/gradle-wrapper.properties
+/gradlew
+/gradlew.bat
+/html/build.gradle
+/settings.gradle
+/android/proguard-rules.pro
