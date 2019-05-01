@@ -29,9 +29,7 @@ public class Chip {
 	private short getInstruction() {
 		short ins = (short) (((Memory.memory[Memory.pc] << 8)) | (Memory.memory[Memory.pc+1]));
 		System.out.println("Instruction: " + String.format("0x%08X",ins));
-		
 		return ins;
-		
 	}
 
 }
