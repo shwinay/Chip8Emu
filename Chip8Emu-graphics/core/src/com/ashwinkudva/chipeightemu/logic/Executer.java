@@ -36,7 +36,6 @@ public class Executer {
 		Memory.stack[Memory.stackPointer] = Memory.pc;
 		Memory.pc = (nnn & 0x0FFF);
 		//System.out.println("calladdr.. pc set to " + (nnn & 0x0FFF));
-		Memory.pc += 2;
 	}
 	
 	public void seVxByte(short x, short kk) {
@@ -93,20 +92,19 @@ public class Executer {
 	}
 	
 	public void addVxVy(short x, short y) {
-		short result = (short) (Memory.registers[x] + Memory.registers[y]);
+		short result = (short) ((Memory.registers[x] & 0xFF) + (Memory.registers[y] & 0xFF));
 		if (result > 255) {
 			Memory.registers[15] = 1;
-			result = (short) Decoder.extract(result, 7, 0);
 		}
 		else {
 			Memory.registers[15] = 0;
 		}
-		Memory.registers[x] = (short) result;
+		Memory.registers[x] = (short) (result & 0xFF);
 		Memory.pc += 2;
 	}
 	
 	public void subVxVy(short x, short y) {
-		Memory.registers[15] = (short) ((Memory.registers[x] & 0xFF) > (Memory.registers[x] & 0xFF) ? 1 : 0); //set flag
+		Memory.registers[15] = (short) ((Memory.registers[x] & 0xFF) > (Memory.registers[y] & 0xFF) ? 1 : 0); //set flag
 		Memory.registers[x] = (short) ((Memory.registers[x] & 0xFF) - (Memory.registers[y] & 0xFF) & 0xFF);
 		Memory.pc += 2;
 	}
@@ -114,7 +112,7 @@ public class Executer {
 	public void shrVxVy(short x, short y) { //what to do with y?
 		short vx = (short)(Memory.registers[x] & 0xFF);
 		Memory.registers[15] = (short) Decoder.extract(vx, 0, 0);
-		Memory.registers[x] = (short) ((vx >> 1) & 0xFF);
+		Memory.registers[x] = (short) ((vx >> 1) & 0x7F);//TODO: Double check
 		Memory.pc += 2;
 	}
 	
@@ -126,7 +124,7 @@ public class Executer {
 	
 	public void shlVxVy(short x) {
 		Memory.registers[15] = (short) Decoder.extract(Memory.registers[x], 7, 7);
-		Memory.registers[x] = (short) ((Memory.registers[x] << 1) & 0xFF);
+		Memory.registers[x] = (short) (((Memory.registers[x] & 0xFF) << 1) & 0xFF);
 		Memory.pc += 2;
 	}
 	
@@ -184,14 +182,20 @@ public class Executer {
 	}
 	
 	public void skipVx(short x) {
+		if (Memory.keys[x] == 1) {
+			Memory.pc += 2;
+		}
 		Memory.pc += 2;
 	}
 	
 	public void skipNotPressedVx(short x) {
+		if (Memory.keys[x] != 1) {
+			Memory.pc += 2;
+		}
 		Memory.pc += 2;
 	}
 	
-	public void ldVxDt(short x) {
+	public void ldVxDt(short x) { //TODO: do delay shit
 		Memory.registers[x] = Memory.delayRegister;
 		Memory.pc += 2;
 	}
@@ -207,17 +211,17 @@ public class Executer {
 	}
 	
 	public void ldDtVx(short x) {
-		Memory.delayRegister = Memory.registers[x];
+		Memory.delayRegister = (short) (Memory.registers[x] & 0xFF);
 		Memory.pc += 2;
 	}
 	
 	public void ldStVx(short x) {
-		Memory.soundRegister = Memory.registers[x];
+		Memory.soundRegister = (short) (Memory.registers[x] & 0xFF);
 		Memory.pc += 2;
 	}
 	
 	public void addIVx(short x) {
-		Memory.iRegister = Memory.iRegister + (Memory.registers[x] & 0xFF);
+		Memory.iRegister = (Memory.iRegister + (Memory.registers[x] & 0xFF)) & 0xFFFF;
 		Memory.pc += 2;
 	}
 	

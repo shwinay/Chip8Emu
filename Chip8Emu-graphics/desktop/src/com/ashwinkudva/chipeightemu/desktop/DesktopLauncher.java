@@ -1,5 +1,6 @@
 package com.ashwinkudva.chipeightemu.desktop;
 
+import com.ashwinkudva.chipeightemu.logic.Decoder;
 import com.ashwinkudva.chipeightemu.logic.Emulator;
 import com.ashwinkudva.chipeightemu.logic.GameScreen;
 import com.badlogic.gdx.backends.lwjgl.LwjglApplication;
@@ -11,6 +12,8 @@ public class DesktopLauncher {
 		config.resizable = false;
 		config.width = GameScreen.DISPLAY_WIDTH * GameScreen.DISPLAY_SCALE;
 		config.height = GameScreen.DISPLAY_HEIGHT * GameScreen.DISPLAY_SCALE;
+		config.backgroundFPS = 120;
+		config.foregroundFPS = 120;
 		new LwjglApplication(new Emulator(), config);
 	}
 }

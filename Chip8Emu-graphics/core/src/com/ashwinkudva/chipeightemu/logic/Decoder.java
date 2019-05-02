@@ -145,7 +145,7 @@ public class Decoder {
 			executer.rndVxByte(x, kk);
 			return 1;
 		}
-		else if (highestNibble == 0b1101) { //Dxyn - DRW Vx, Vx, nibble
+		else if (highestNibble == 0b1101) { //Dxyn - DRW Vx, Vy, nibble
 			byte x = (byte) extract(opcode, 11, 8);
 			byte y = (byte) extract(opcode, 7, 4);
 			byte n = (byte) extract(opcode, 3, 0);
@@ -167,7 +167,7 @@ public class Decoder {
 			executer.ldVxDt(x);
 			return 1;
 		}
-		else if (highestNibble == 0b1111 && secondLowestNibble == 0 && lowestNibble == 0b1010) {
+		else if (highestNibble == 0b1111 && secondLowestNibble == 0 && lowestNibble == 0b1010) { //Fx0A - LD Vx, K
 			short x = (short)(extract(opcode, 11, 8) & 0xFF);
 			executer.ldVxK(x);
 			return 1;
