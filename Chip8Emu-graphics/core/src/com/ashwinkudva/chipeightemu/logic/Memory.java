@@ -14,6 +14,7 @@ public class Memory {
 	public static final int SCREEN_WIDTH = 64;
 	public static final int SCREEN_HEIGHT = 32;
 	public static final int SCREEN_SCALE = 10;
+	public static final int NUM_KEYS = 16;
 	
 	public static short[] registers = new short[NUM_REGISTERS];
 	public static int iRegister = 0x000;
@@ -24,6 +25,7 @@ public class Memory {
 	public static int pc = 0x000;
 	public static int stackPointer = 0x000;
 	
+	public static int[] keys = new int[NUM_KEYS];
 	public static int[][] pixels = new int[GameScreen.DISPLAY_HEIGHT][GameScreen.DISPLAY_WIDTH];
 	
 	// This is for Unix systems

@@ -13,7 +13,11 @@ public class Executer {
 	
 	//METHODS
 	public void cls() {
-		Memory.pixels = new int[GameScreen.DISPLAY_HEIGHT][GameScreen.DISPLAY_WIDTH];
+		for (int i = 0; i < Memory.pixels.length; i ++) {
+			for (int j = 0; j < Memory.pixels[i].length; j ++) {
+				Memory.pixels[i][j] = 0;
+			}
+		}
 		Memory.pc += 2;
 	}
 	
@@ -31,7 +35,7 @@ public class Executer {
 		Memory.stackPointer++;
 		Memory.stack[Memory.stackPointer] = Memory.pc;
 		Memory.pc = (nnn & 0x0FFF);
-		System.out.println("calladdr.. pc set to " + (nnn & 0x0FFF));
+		//System.out.println("calladdr.. pc set to " + (nnn & 0x0FFF));
 		Memory.pc += 2;
 	}
 	
@@ -57,7 +61,8 @@ public class Executer {
 	}
 	
 	public void ldVxByte(short x, short kk) {
-		Memory.registers[x] = kk;
+		Memory.registers[x] = (short) (kk & 0xFF);
+		//System.out.println("register " + x + ": " + (kk & 0xFF));
 		Memory.pc += 2;
 	}
 	
@@ -134,6 +139,7 @@ public class Executer {
 	
 	public void ldIAddr(short nnn) {
 		Memory.iRegister = (short) (nnn & 0x0FFF);
+		//System.out.println("i: " + Memory.iRegister);
 		Memory.pc += 2;
 	}
 	
@@ -153,18 +159,12 @@ public class Executer {
 		short coordY = (short) (Memory.registers[y] & 0xFF);
 		short[] sprite = new short[n];
 		boolean hasCollided = false;
-//		System.out.println(coordX);
-//		System.out.println(coordY);
-//		System.out.println(n);
-//		System.out.println(Memory.iRegister);
-		
-		
 		for (int i = 0; i < n; i ++) {
-			System.out.println("At loc " + (Memory.iRegister + i) + ": " + Memory.memory[Memory.iRegister + i]);
+			//System.out.println("At loc " + (Memory.iRegister + i) + ": " + Memory.memory[Memory.iRegister + i]);
 			sprite[i] = Memory.memory[Memory.iRegister + i];
 		}
 		
-		System.out.println(Arrays.toString(sprite));
+		//System.out.println(Arrays.toString(sprite));
 		
 		for (int x_ = 0; x_ < 8; x_ ++) {
 			for (int y_ = 0; y_ < n; y_ ++) {
@@ -211,12 +211,11 @@ public class Executer {
 	}
 	
 	public void addIVx(short x) {
-		Memory.iRegister += Memory.registers[x];
+		Memory.iRegister = Memory.iRegister + (Memory.registers[x] & 0xFF);
 		Memory.pc += 2;
 	}
 	
 	public void LdFVx(short x) {
-		
 		short fontByte = Memory.registers[x];
 		Memory.iRegister = fontByte * 5;
 		Memory.pc += 2;
@@ -233,14 +232,18 @@ public class Executer {
 	}
 	
 	public void LdIVx(short x) {
-		System.exit(0);
+		
+		for (int i = 0; i <= x; i ++) {
+			Memory.memory[Memory.iRegister + i] = (short) (Memory.registers[i] & 0xFF);
+		}
+		
 		Memory.pc += 2;
 	}
 	
 	public void LdVxI(short x) {
 		
 		for (int i = 0; i <= x; i ++) {
-			Memory.registers[x] = (short) (Memory.memory[Memory.iRegister + i] & 0xFF);
+			Memory.registers[i] = (short) (Memory.memory[Memory.iRegister + i] & 0xFF);
 		}
 		
 		Memory.pc += 2;
