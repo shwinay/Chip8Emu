@@ -167,6 +167,11 @@ public class Decoder {
 			executer.ldVxDt(x);
 			return 1;
 		}
+		else if (highestNibble == 0b1111 && secondLowestNibble == 0 && lowestNibble == 0b1010) {
+			short x = (short)(extract(opcode, 11, 8) & 0xFF);
+			executer.ldVxK(x);
+			return 1;
+		}
 		else if (highestNibble == 0b1111 && secondLowestNibble == 0b0001 && lowestNibble == 0b0101) { //Fx15 - LD DT, Vx
 			byte x = (byte) extract(opcode, 11, 8);
 			executer.ldDtVx(x);

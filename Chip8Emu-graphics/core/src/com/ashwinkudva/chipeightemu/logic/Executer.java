@@ -196,8 +196,14 @@ public class Executer {
 		Memory.pc += 2;
 	}
 	
-	public void ldVxK() {
-		Memory.pc += 2;
+	public void ldVxK(short x) {
+		x = (short) (x & 0xFF);
+		for (int i = 0; i < Memory.keys.length; i ++) {
+			if (Memory.keys[i] == 1) {
+				Memory.registers[x] = (short) (i & 0xFF);
+				Memory.pc += 2;
+			}
+		}
 	}
 	
 	public void ldDtVx(short x) {

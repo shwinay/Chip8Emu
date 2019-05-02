@@ -6,11 +6,9 @@ import com.badlogic.gdx.InputAdapter;
 public class Keyboard extends InputAdapter {
 
 	//CONSTRUCTORS
-	public boolean isKeyPressed;
 	
 	//CONSTRUCTOR
 	public Keyboard() {
-		isKeyPressed = false;
 	}
 	
 	//METHODS
@@ -20,7 +18,6 @@ public class Keyboard extends InputAdapter {
 		if (hex > -1) {
 			System.out.println("KEY PRESSED: " + hex);
 			Memory.keys[hex] = 1;
-			isKeyPressed = true;
 		}
 		return true;
 	}
@@ -31,7 +28,6 @@ public class Keyboard extends InputAdapter {
 		if (hex > -1) {
 			System.out.println("KEY RELEASED: " + hex);
 			Memory.keys[hex] = 0;
-			isKeyPressed = false;
 		}
 		return true;
 	}

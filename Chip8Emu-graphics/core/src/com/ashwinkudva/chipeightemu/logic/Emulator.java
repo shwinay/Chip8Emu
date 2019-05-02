@@ -4,7 +4,7 @@ import com.badlogic.gdx.Game;
 
 public class Emulator extends Game {
 	
-	public static String romFilePath = "./c8games/BRIX";
+	public static String romFilePath = "./c8games/PONG2";
 	public static String testFilePath = "./drawtest.hex";
 	
 	@Override
