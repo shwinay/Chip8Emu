@@ -17,7 +17,7 @@ public class GameScreen implements Screen {
 	public static final int DISPLAY_WIDTH = 64;
 	public static final int DISPLAY_HEIGHT = 32;
 	public static final int DISPLAY_SCALE = 15;
-	public static final int HZ = 540; //refresh rate in milliseconds - 500 Hz
+	public static final int HZ = 2160; //refresh rate in milliseconds - 500 Hz
 	long st = System.currentTimeMillis();
 	long cycles = 0;
 	
@@ -58,13 +58,13 @@ public class GameScreen implements Screen {
 			
 			//update graphics
 			showDisplay();
-			if (Memory.keys[15]) {//TODO
+			/*if (Memory.keys[15]) {//TODO
 				long end = System.currentTimeMillis();
 				System.out.println("time: " +(end-st)/1000);
 				System.out.println("cycles: " + cycles);
 				System.out.println("cycles/time: " + (cycles/((end-st)/1000)));
 				System.exit(1);
-			}
+			}*/
 		}
 		
 	}

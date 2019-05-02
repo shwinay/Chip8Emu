@@ -209,16 +209,24 @@ public class Executer {
 	
 	public void ldVxK(short x) {
 		x = (short) (x & 0xFF);
-		System.out.println("waiting: " + x);
-		Memory.keyPressed = -1;
-		while (Memory.keyPressed == -1) {
+		if (Memory.ldVxkStart == false) {
+			Memory.ldVxkStart = true;
+			Memory.keyPressed = -1;
+			System.out.println("waiting: " + x);
 		}
-		System.out.println("hit: " + x);
-		Memory.registers[x] = (short) ((Memory.keyPressed) & 0xFF);
-		Memory.pc += 2;
 		
 		
-		System.out.println("Done waiting: " + x);
+		/*while (Memory.keyPressed == -1) {			
+		}*/
+		if (Memory.keyPressed != -1) {
+			System.out.println("hit: " + Memory.keyPressed);
+			System.out.println("Done waiting: " + x);
+			Memory.registers[x] = (short) ((Memory.keyPressed) & 0xFF);
+			Memory.pc += 2;
+			Memory.ldVxkStart = false;
+		}
+		
+		
 	}
 	
 	public void ldDtVx(short x) {

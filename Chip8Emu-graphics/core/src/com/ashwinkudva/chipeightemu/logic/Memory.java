@@ -5,6 +5,8 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 
+import com.badlogic.gdx.Input;
+
 public class Memory {
 	
 	//INSTANCE VARIABLES
@@ -26,6 +28,8 @@ public class Memory {
 	public static int stackPointer = 0x000;
 	
 	public static int keyPressed = -1;
+	public static boolean ldVxkStart = false;
+	
 	public static boolean[] keys = new boolean[NUM_KEYS];
 	public static int[][] pixels = new int[GameScreen.DISPLAY_HEIGHT][GameScreen.DISPLAY_WIDTH];
 	

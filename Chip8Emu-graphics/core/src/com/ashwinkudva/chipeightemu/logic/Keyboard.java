@@ -36,13 +36,13 @@ public class Keyboard extends InputAdapter {
 	private int getHexKey(int code) {
 		switch (code) {
 		case Input.Keys.NUM_1:
-			return 0x0;
-		case Input.Keys.NUM_2:
 			return 0x1;
-		case Input.Keys.NUM_3:
+		case Input.Keys.NUM_2:
 			return 0x2;
-		case Input.Keys.NUM_4:
+		case Input.Keys.NUM_3:
 			return 0x3;
+		case Input.Keys.NUM_4:
+			return 0xC;
 		case Input.Keys.Q:
 			return 0x4;
 		case Input.Keys.W:
@@ -50,21 +50,21 @@ public class Keyboard extends InputAdapter {
 		case Input.Keys.E:
 			return 0x6;
 		case Input.Keys.R:
-			return 0x7;
-		case Input.Keys.A:
-			return 0x8;
-		case Input.Keys.S:
-			return 0x9;
-		case Input.Keys.D:
-			return 0xA;
-		case Input.Keys.F:
-			return 0xB;
-		case Input.Keys.Z:
-			return 0xC;
-		case Input.Keys.X:
 			return 0xD;
-		case Input.Keys.C:
+		case Input.Keys.A:
+			return 0x7;
+		case Input.Keys.S:
+			return 0x8;
+		case Input.Keys.D:
+			return 0x9;
+		case Input.Keys.F:
 			return 0xE;
+		case Input.Keys.Z:
+			return 0xA;
+		case Input.Keys.X:
+			return 0x0;
+		case Input.Keys.C:
+			return 0xB;
 		case Input.Keys.V:
 			return 0xF;
 		}
