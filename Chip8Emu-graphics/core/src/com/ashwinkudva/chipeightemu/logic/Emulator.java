@@ -5,8 +5,8 @@ import com.badlogic.gdx.Gdx;
 
 public class Emulator extends Game {
 	
-	public static String romFilePath = "./c8games/PONG2";
-	public static String testFilePath = "./keyboardtest.hex";
+	public static String romFilePath = "./c8games/INVADERS";
+	public static String testFilePath = "./test_opcode.ch8";
 	
 	@Override
 	public void create() {
