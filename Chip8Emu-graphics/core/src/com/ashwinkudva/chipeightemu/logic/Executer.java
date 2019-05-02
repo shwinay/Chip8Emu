@@ -112,7 +112,7 @@ public class Executer {
 	public void shrVxVy(short x, short y) { //what to do with y?
 		short vx = (short)(Memory.registers[x] & 0xFF);
 		Memory.registers[15] = (short) Decoder.extract(vx, 0, 0);
-		Memory.registers[x] = (short) ((vx >> 1) & 0x7F);//TODO: Double check
+		Memory.registers[x] = (short) ((vx >>> 1) & 0xFF);//TODO: Double check
 		Memory.pc += 2;
 	}
 	
@@ -153,6 +153,7 @@ public class Executer {
 	}
 	
 	public void drwVxVyNibble(short x, short y, short n) {
+		System.out.println("drawing");
 		short coordX = (short) (Memory.registers[x] & 0xFF);
 		short coordY = (short) (Memory.registers[y] & 0xFF);
 		short[] sprite = new short[n];
@@ -182,15 +183,21 @@ public class Executer {
 	}
 	
 	public void skipVx(short x) {
-		if (Memory.keys[x] == 1) {
+		if (Memory.keys[x]) {
+			System.out.println("hit: " + x);
 			Memory.pc += 2;
+		} else {
+			System.out.println("miss: " + x);
 		}
 		Memory.pc += 2;
 	}
 	
 	public void skipNotPressedVx(short x) {
-		if (Memory.keys[x] != 1) {
+		if (!Memory.keys[x]) {
+			System.out.println("miss: " + x);
 			Memory.pc += 2;
+		} else {
+			System.out.println("hit: " + x);
 		}
 		Memory.pc += 2;
 	}
@@ -202,12 +209,16 @@ public class Executer {
 	
 	public void ldVxK(short x) {
 		x = (short) (x & 0xFF);
-		for (int i = 0; i < Memory.keys.length; i ++) {
-			if (Memory.keys[i] == 1) {
-				Memory.registers[x] = (short) (i & 0xFF);
-				Memory.pc += 2;
-			}
+		System.out.println("waiting: " + x);
+		Memory.keyPressed = -1;
+		while (Memory.keyPressed == -1) {
 		}
+		System.out.println("hit: " + x);
+		Memory.registers[x] = (short) ((Memory.keyPressed) & 0xFF);
+		Memory.pc += 2;
+		
+		
+		System.out.println("Done waiting: " + x);
 	}
 	
 	public void ldDtVx(short x) {

@@ -16,8 +16,8 @@ public class GameScreen implements Screen {
 	//INSTANCE VARIABLES
 	public static final int DISPLAY_WIDTH = 64;
 	public static final int DISPLAY_HEIGHT = 32;
-	public static final int DISPLAY_SCALE = 10;
-	public static final int REFRESH_RATE = 1000 / 500; //refresh rate in milliseconds - 500 Hz
+	public static final int DISPLAY_SCALE = 15;
+	public static final int HZ = 540; //refresh rate in milliseconds - 500 Hz
 	long st = System.currentTimeMillis();
 	long cycles = 0;
 	
@@ -25,7 +25,7 @@ public class GameScreen implements Screen {
 	private Decoder decoder;
 	private ShapeRenderer shapeRenderer;
 	private OrthographicCamera camera;
-	private Keyboard keyboard;
+	Keyboard keyboard;
 	
 	//CONSTRUCTOR
 	public GameScreen(Emulator emulator) {
@@ -39,30 +39,34 @@ public class GameScreen implements Screen {
 		//set up emulator stuff
 		decoder = new Decoder();
 		keyboard = new Keyboard();
-		Gdx.input.setInputProcessor(keyboard);
 	}
 	
 	//METHODS
 	@Override
 	public void render(float delta) {
-		cycles++;
-		//decode and execute instructions
-		int shouldRun = decoder.decode(getInstruction());
-//		if (shouldRun == 0) {
-//			System.exit(0);
-//		}
 		if (Memory.delayRegister>0) {
 			Memory.delayRegister--;
 		}
-		//update graphics
-		showDisplay();
-		if (Memory.keys[0]==1) {
-			long end = System.currentTimeMillis();
-			System.out.println("time: " +(end-st)/1000);
-			System.out.println("cycles: " + cycles);
-			System.out.println("cycles/time: " + (cycles/((end-st)/1000)));
-			System.exit(1);
+		for (int i=0; i < HZ/60; i++) {
+			cycles++;
+			//decode and execute instructions
+			//System.out.println(Arrays.toString(Memory.keys));
+			int shouldRun = decoder.decode(getInstruction());
+	//		if (shouldRun == 0) {
+	//			System.exit(0);
+	//		}
+			
+			//update graphics
+			showDisplay();
+			if (Memory.keys[15]) {//TODO
+				long end = System.currentTimeMillis();
+				System.out.println("time: " +(end-st)/1000);
+				System.out.println("cycles: " + cycles);
+				System.out.println("cycles/time: " + (cycles/((end-st)/1000)));
+				System.exit(1);
+			}
 		}
+		
 	}
 	
 	public void showDisplay() {

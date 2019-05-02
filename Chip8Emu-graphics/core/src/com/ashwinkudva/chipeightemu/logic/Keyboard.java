@@ -17,7 +17,8 @@ public class Keyboard extends InputAdapter {
 		int hex = getHexKey(code);
 		if (hex > -1) {
 			System.out.println("KEY PRESSED: " + hex);
-			Memory.keys[hex] = 1;
+			Memory.keys[hex] = true;
+			Memory.keyPressed = hex;
 		}
 		return true;
 	}
@@ -27,59 +28,44 @@ public class Keyboard extends InputAdapter {
 		int hex = getHexKey(code);
 		if (hex > -1) {
 			System.out.println("KEY RELEASED: " + hex);
-			Memory.keys[hex] = 0;
+			Memory.keys[hex] = false;
 		}
 		return true;
 	}
 	
 	private int getHexKey(int code) {
-		
-		if (code == Input.Keys.NUM_0) {
+		switch (code) {
+		case Input.Keys.NUM_1:
 			return 0x0;
-		}
-		else if (code == Input.Keys.NUM_1) {
+		case Input.Keys.NUM_2:
 			return 0x1;
-		}
-		else if (code == Input.Keys.NUM_2) {
+		case Input.Keys.NUM_3:
 			return 0x2;
-		}
-		else if (code == Input.Keys.NUM_3) {
+		case Input.Keys.NUM_4:
 			return 0x3;
-		}
-		else if (code == Input.Keys.NUM_4) {
+		case Input.Keys.Q:
 			return 0x4;
-		}		
-		else if (code == Input.Keys.NUM_5) {
+		case Input.Keys.W:
 			return 0x5;
-		}
-		else if (code == Input.Keys.NUM_6) {
+		case Input.Keys.E:
 			return 0x6;
-		}
-		else if (code == Input.Keys.NUM_7) {
+		case Input.Keys.R:
 			return 0x7;
-		}
-		else if (code == Input.Keys.NUM_8) {
+		case Input.Keys.A:
 			return 0x8;
-		}
-		else if (code == Input.Keys.NUM_9) {
+		case Input.Keys.S:
 			return 0x9;
-		}
-		else if (code == Input.Keys.A) {
+		case Input.Keys.D:
 			return 0xA;
-		}
-		else if (code == Input.Keys.S) {
+		case Input.Keys.F:
 			return 0xB;
-		}
-		else if (code == Input.Keys.D) {
+		case Input.Keys.Z:
 			return 0xC;
-		}
-		else if (code == Input.Keys.F) {
+		case Input.Keys.X:
 			return 0xD;
-		}
-		else if (code == Input.Keys.G) {
+		case Input.Keys.C:
 			return 0xE;
-		}
-		else if (code == Input.Keys.H) {
+		case Input.Keys.V:
 			return 0xF;
 		}
 		

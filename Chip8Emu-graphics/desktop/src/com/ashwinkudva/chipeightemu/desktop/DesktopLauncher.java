@@ -12,8 +12,8 @@ public class DesktopLauncher {
 		config.resizable = false;
 		config.width = GameScreen.DISPLAY_WIDTH * GameScreen.DISPLAY_SCALE;
 		config.height = GameScreen.DISPLAY_HEIGHT * GameScreen.DISPLAY_SCALE;
-		config.backgroundFPS = 120;
-		config.foregroundFPS = 120;
+		//config.backgroundFPS = 60;
+		//config.foregroundFPS = 20;
 		new LwjglApplication(new Emulator(), config);
 	}
 }
