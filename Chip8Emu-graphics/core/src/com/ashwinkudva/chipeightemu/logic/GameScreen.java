@@ -47,14 +47,15 @@ public class GameScreen implements Screen {
 		if (Memory.delayRegister>0) {
 			Memory.delayRegister--;
 		}
+		if (Memory.soundRegister > 0) {
+			Memory.soundRegister--;
+			//TODO: play sound
+		}
 		for (int i=0; i < HZ/60; i++) {
 			cycles++;
 			//decode and execute instructions
 			//System.out.println(Arrays.toString(Memory.keys));
 			int shouldRun = decoder.decode(getInstruction());
-	//		if (shouldRun == 0) {
-	//			System.exit(0);
-	//		}
 			
 			//update graphics
 			showDisplay();

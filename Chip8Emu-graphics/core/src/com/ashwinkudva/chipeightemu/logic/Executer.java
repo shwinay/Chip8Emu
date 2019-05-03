@@ -215,9 +215,6 @@ public class Executer {
 			System.out.println("waiting: " + x);
 		}
 		
-		
-		/*while (Memory.keyPressed == -1) {			
-		}*/
 		if (Memory.keyPressed != -1) {
 			System.out.println("hit: " + Memory.keyPressed);
 			System.out.println("Done waiting: " + x);
@@ -225,7 +222,6 @@ public class Executer {
 			Memory.pc += 2;
 			Memory.ldVxkStart = false;
 		}
-		
 		
 	}
 	
