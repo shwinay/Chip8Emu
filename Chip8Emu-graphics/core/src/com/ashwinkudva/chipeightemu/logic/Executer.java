@@ -232,6 +232,7 @@ public class Executer {
 	
 	public void ldStVx(short x) {
 		Memory.soundRegister = (short) (Memory.registers[x] & 0xFF);
+		Memory.soundEffect.play();
 		Memory.pc += 2;
 	}
 	

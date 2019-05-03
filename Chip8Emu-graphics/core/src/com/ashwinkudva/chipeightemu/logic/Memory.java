@@ -5,7 +5,8 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 
-import com.badlogic.gdx.Input;
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.audio.Sound;
 
 public class Memory {
 	
@@ -32,6 +33,8 @@ public class Memory {
 	
 	public static boolean[] keys = new boolean[NUM_KEYS];
 	public static int[][] pixels = new int[GameScreen.DISPLAY_HEIGHT][GameScreen.DISPLAY_WIDTH];
+	
+	public static Sound soundEffect = Gdx.audio.newSound(Gdx.files.internal("Blip.wav"));
 	
 	// This is for Unix systems
 	public static String unixFontFilePath = "./font.hex";
