@@ -7,13 +7,14 @@ public class Emulator extends Game {
 	
 	public static String romFilePath = "./c8games/PONG2";
 	public static String testFilePath = "keyboardtest.hex";
+	public GameScreen gameScreen;
 	
 	@Override
 	public void create() {
 		initializeROM();
-		GameScreen gameScreen = new GameScreen(this);
-		Gdx.input.setInputProcessor(gameScreen.keyboard);
-		setScreen(gameScreen);
+		MenuScreen menuScreen = new MenuScreen(this);
+		setScreen(menuScreen);
+		//setScreen(gameScreen);
 	}
 	
 	private void initializeROM() {

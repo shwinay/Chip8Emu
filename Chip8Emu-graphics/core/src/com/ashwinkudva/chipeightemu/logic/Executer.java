@@ -159,12 +159,8 @@ public class Executer {
 		short[] sprite = new short[n];
 		boolean hasCollided = false;
 		for (int i = 0; i < n; i ++) {
-			//System.out.println("At loc " + (Memory.iRegister + i) + ": " + Memory.memory[Memory.iRegister + i]);
 			sprite[i] = Memory.memory[Memory.iRegister + i];
 		}
-		
-		//System.out.println(Arrays.toString(sprite));
-		
 		for (int x_ = 0; x_ < 8; x_ ++) {
 			for (int y_ = 0; y_ < n; y_ ++) {
 				int beforePixel = Memory.pixels[(coordY + y_) % GameScreen.DISPLAY_HEIGHT][(coordX + x_) % GameScreen.DISPLAY_WIDTH];
@@ -172,9 +168,7 @@ public class Executer {
 				if ((beforePixel & extractPixel) == 1) {
 					hasCollided = true;
 				}
-				//System.out.println("Before pixel at (" + (x_) + ", " + (y_) + "): " + Memory.pixels[coordY + y_][coordX + x_]);
 				Memory.pixels[(coordY + y_) % GameScreen.DISPLAY_HEIGHT][(coordX + x_) % GameScreen.DISPLAY_WIDTH] = beforePixel ^ extractPixel;
-				//System.out.println("After pixel at (" + (x_) + ", " + (y_) + "): " + Memory.pixels[coordY + y_][coordX + x_]);
 			}
 		}
 		Memory.registers[15] = (short) (hasCollided ? 1 : 0);

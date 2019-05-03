@@ -1,0 +1,33 @@
+
+buttons.png
+format: RGBA8888
+filter: Nearest,Nearest
+repeat: none
+buttondown
+  rotate: false
+  xy: 1, 1
+  size: 152, 77
+  orig: 152, 77
+  offset: 0, 0
+  index: -1
+buttonup
+  rotate: false
+  xy: 155, 1
+  size: 152, 77
+  orig: 152, 77
+  offset: 0, 0
+  index: -1
+checkboxoff
+  rotate: false
+  xy: 309, 3
+  size: 75, 75
+  orig: 75, 75
+  offset: 0, 0
+  index: -1
+checkboxon
+  rotate: false
+  xy: 386, 3
+  size: 75, 75
+  orig: 75, 75
+  offset: 0, 0
+  index: -1

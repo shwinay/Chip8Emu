@@ -16,7 +16,7 @@ public class GameScreen implements Screen {
 	//INSTANCE VARIABLES
 	public static final int DISPLAY_WIDTH = 64;
 	public static final int DISPLAY_HEIGHT = 32;
-	public static final int DISPLAY_SCALE = 15;
+	public static final int DISPLAY_SCALE = 20;
 	public static final int HZ = 540; //refresh rate in milliseconds - 500 Hz
 	long st = System.currentTimeMillis();
 	long cycles = 0;
@@ -38,7 +38,8 @@ public class GameScreen implements Screen {
 		
 		//set up emulator stuff
 		decoder = new Decoder();
-		keyboard = new Keyboard();
+		keyboard = new Keyboard(emulator);
+		Gdx.input.setInputProcessor(keyboard);
 	}
 	
 	//METHODS

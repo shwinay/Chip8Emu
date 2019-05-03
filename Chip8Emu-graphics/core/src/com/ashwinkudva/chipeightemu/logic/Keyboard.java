@@ -5,13 +5,13 @@ import com.badlogic.gdx.InputAdapter;
 
 public class Keyboard extends InputAdapter {
 
-	//CONSTRUCTORS
+	//METHODS
+	private Emulator emulator;
 	
-	//CONSTRUCTOR
-	public Keyboard() {
+	public Keyboard(Emulator emulator) {
+		this.emulator = emulator;
 	}
 	
-	//METHODS
 	@Override
 	public boolean keyDown(int code) {
 		int hex = getHexKey(code);
@@ -67,6 +67,8 @@ public class Keyboard extends InputAdapter {
 			return 0xB;
 		case Input.Keys.V:
 			return 0xF;
+		case Input.Keys.SPACE:
+			emulator.setScreen(new MenuScreen(emulator));
 		}
 		
 		return -1;
