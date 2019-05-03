@@ -202,7 +202,7 @@ public class Executer {
 		Memory.pc += 2;
 	}
 	
-	public void ldVxDt(short x) { //TODO: do delay shit
+	public void ldVxDt(short x) {
 		Memory.registers[x] = Memory.delayRegister;
 		Memory.pc += 2;
 	}
