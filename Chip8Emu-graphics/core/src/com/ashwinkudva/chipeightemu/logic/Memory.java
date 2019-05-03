@@ -34,7 +34,7 @@ public class Memory {
 	public static boolean[] keys = new boolean[NUM_KEYS];
 	public static int[][] pixels = new int[GameScreen.DISPLAY_HEIGHT][GameScreen.DISPLAY_WIDTH];
 	
-	public static Sound soundEffect = Gdx.audio.newSound(Gdx.files.internal("Blip.wav"));
+	public static Sound soundEffect = Gdx.audio.newSound(Gdx.files.internal("gamesound.mp3"));
 	
 	// This is for Unix systems
 	public static String unixFontFilePath = "./font.hex";
