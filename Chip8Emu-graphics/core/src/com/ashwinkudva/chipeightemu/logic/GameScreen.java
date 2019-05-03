@@ -72,7 +72,7 @@ public class GameScreen implements Screen {
 	}
 	
 	public void showDisplay() {
-		Gdx.gl.glClearColor(0, 0, 0, 1); //clear to black
+		Gdx.gl.glClearColor(.25f, .25f, .25f, 1); //clear to black
 		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 		shapeRenderer.setProjectionMatrix(camera.combined);
 		shapeRenderer.begin(ShapeType.Filled);
@@ -82,7 +82,7 @@ public class GameScreen implements Screen {
 					shapeRenderer.setColor(new Color(1f, 1f, 1f, 0f)); //set color to white
 				}
 				else {
-					shapeRenderer.setColor(new Color(0f, 0f, 0f, 0f)); //set color to black
+					shapeRenderer.setColor(new Color(.25f, .25f, .25f, 0f)); //set color to black
 				}
 				shapeRenderer.rect(x, y, 1f, 1f);
 			}

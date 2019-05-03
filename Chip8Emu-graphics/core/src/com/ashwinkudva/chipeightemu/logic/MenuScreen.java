@@ -85,6 +85,7 @@ public class MenuScreen implements Screen {
 				stage.addAction(Actions.sequence(Actions.fadeOut((float) .5), Actions.run(new Runnable() {
 					@Override
 					public void run() {
+						Memory.soundEffect.dispose();
 						System.exit(0);
 					}
 				})));
