@@ -17,7 +17,7 @@ public class GameScreen implements Screen {
 	public static final int DISPLAY_WIDTH = 64;
 	public static final int DISPLAY_HEIGHT = 32;
 	public static final int DISPLAY_SCALE = 20;
-	public static final int HZ = 540; //refresh rate in milliseconds - 500 Hz
+	public static final int HZ = 600; //refresh rate in milliseconds - 500 Hz
 	long st = System.currentTimeMillis();
 	long cycles = 0;
 	
