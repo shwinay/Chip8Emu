@@ -183,7 +183,7 @@ public class Executer {
 	}
 	
 	public void skipVx(short x) {
-		if (Memory.keys[x]) {
+		if (Memory.keys[Memory.registers[x]]) {
 			System.out.println("hit: " + x);
 			Memory.pc += 2;
 		} else {
@@ -193,7 +193,7 @@ public class Executer {
 	}
 	
 	public void skipNotPressedVx(short x) {
-		if (!Memory.keys[x]) {
+		if (!Memory.keys[Memory.registers[x]]) {
 			System.out.println("miss: " + x);
 			Memory.pc += 2;
 		} else {

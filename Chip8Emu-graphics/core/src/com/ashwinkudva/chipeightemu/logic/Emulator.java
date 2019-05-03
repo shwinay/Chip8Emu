@@ -18,7 +18,7 @@ public class Emulator extends Game {
 	
 	private void initializeROM() {
 		Memory.loadFonts();
-		Memory.loadFile(testFilePath);
+		Memory.loadFile(romFilePath);
 		//Memory.printMemory();
 		Memory.pc = 512;
 	}
