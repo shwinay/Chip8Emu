@@ -5,7 +5,7 @@ import com.badlogic.gdx.Gdx;
 
 public class Emulator extends Game {
 	
-	public static String romFilePath = "./c8games/INVADERS";
+	public static String romFilePath;
 	public static String testFilePath = "keyboardtest.hex";
 	public GameScreen gameScreen;
 	
