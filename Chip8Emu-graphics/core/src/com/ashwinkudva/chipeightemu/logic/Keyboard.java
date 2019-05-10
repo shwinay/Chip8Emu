@@ -16,7 +16,7 @@ public class Keyboard extends InputAdapter {
 	public boolean keyDown(int code) {
 		int hex = getHexKey(code);
 		if (hex > -1) {
-			System.out.println("KEY PRESSED: " + hex);
+			//System.out.println("KEY PRESSED: " + hex);
 			Memory.keys[hex] = true;
 			Memory.keyPressed = hex;
 		}
@@ -27,7 +27,7 @@ public class Keyboard extends InputAdapter {
 	public boolean keyUp(int code) {
 		int hex = getHexKey(code);
 		if (hex > -1) {
-			System.out.println("KEY RELEASED: " + hex);
+			//System.out.println("KEY RELEASED: " + hex);
 			Memory.keys[hex] = false;
 		}
 		return true;

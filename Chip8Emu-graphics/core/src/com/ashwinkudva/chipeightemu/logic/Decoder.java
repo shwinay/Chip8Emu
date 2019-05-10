@@ -9,7 +9,7 @@ public class Decoder {
 	}
 	
 	public int decode(short opcode) { //return 1 for valid, 0 for invalid
-		System.out.println("decoding: " + String.format("%05X",opcode) + " at PC: " + Memory.pc);
+		//System.out.println("decoding: " + String.format("%05X",opcode) + " at PC: " + Memory.pc);
 		int highestNibble = extract(opcode, 15, 12);
 		int secondHighestNibble = extract(opcode, 11, 8);
 		int secondLowestNibble = extract(opcode, 7, 4);

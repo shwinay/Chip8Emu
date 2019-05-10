@@ -153,7 +153,7 @@ public class Executer {
 	}
 	
 	public void drwVxVyNibble(short x, short y, short n) {
-		System.out.println("drawing");
+		//System.out.println("drawing");
 		short coordX = (short) (Memory.registers[x] & 0xFF);
 		short coordY = (short) (Memory.registers[y] & 0xFF);
 		short[] sprite = new short[n];
@@ -178,20 +178,20 @@ public class Executer {
 	
 	public void skipVx(short x) {
 		if (Memory.keys[Memory.registers[x]]) {
-			System.out.println("hit: " + x);
+			//System.out.println("hit: " + x);
 			Memory.pc += 2;
 		} else {
-			System.out.println("miss: " + x);
+			//System.out.println("miss: " + x);
 		}
 		Memory.pc += 2;
 	}
 	
 	public void skipNotPressedVx(short x) {
 		if (!Memory.keys[Memory.registers[x]]) {
-			System.out.println("miss: " + x);
+			//System.out.println("miss: " + x);
 			Memory.pc += 2;
 		} else {
-			System.out.println("hit: " + x);
+			//System.out.println("hit: " + x);
 		}
 		Memory.pc += 2;
 	}
